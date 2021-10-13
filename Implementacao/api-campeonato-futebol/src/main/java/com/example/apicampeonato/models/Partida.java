@@ -5,13 +5,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,13 +32,13 @@ public class Partida implements Serializable{
 	@Column(nullable = false)
 	private LocalDate data;
 	
-	@Column(name = "hora_inicio", nullable = false)
+	@Column(nullable = false)
 	private LocalDate horaInicio;
 	
-	@Column(name = "hora_fim", nullable = false)
+	@Column(nullable = false)
 	private LocalDate horaFim;
 	
-	@Column(name = "tipo_partida", nullable = false)
+	@Column(nullable = false)
 	private Integer tipoPartidaEnum;
 	
 	@ManyToOne
@@ -48,26 +49,20 @@ public class Partida implements Serializable{
 	@JoinColumn(name = "id_estadio")
 	private Estadio estadio;
 	
-	@OneToOne
-	@JoinColumn(name = "id_placar")
-	private Placar placar;
+	@ManyToMany
+	@JoinTable(joinColumns = @JoinColumn(name = "id_partida"), inverseJoinColumns = @JoinColumn(name = "id_time"))
+	private List<Time> times = new ArrayList<>();
 	
-	//@OneToOne
-	//@JoinColumn(name = "id_time1")
-	//private Time time1;
-	
-	//@OneToOne
-	//@JoinColumn(name = "id_time2")
-	//private Time time2;
-	
-	//private List<Arbitro> arbitros = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(joinColumns = @JoinColumn(name = "id_partida"), inverseJoinColumns = @JoinColumn(name = "id_arbitro"))
+	private List<Arbitro> arbitros = new ArrayList<>();
 
 	public Partida() {
 		
 	}
 
 	public Partida(Long id, LocalDate data, LocalDate horaInicio, LocalDate horaFim, TipoPartidaEnum tipoPartidaEnum,
-			Campeonato campeonato, Estadio estadio, Time time1, Time time2) {
+			Campeonato campeonato, Estadio estadio) {
 		super();
 		this.id = id;
 		this.data = data;
@@ -76,8 +71,6 @@ public class Partida implements Serializable{
 		this.tipoPartidaEnum = tipoPartidaEnum.getCod();
 		this.campeonato = campeonato;
 		this.estadio = estadio;
-		//this.time1 = time1;
-		//this.time2 = time2;
 	}
 
 	public Long getId() {
@@ -135,15 +128,14 @@ public class Partida implements Serializable{
 	public void setEstadio(Estadio estadio) {
 		this.estadio = estadio;
 	}
-
-	public Placar getPlacar() {
-		return placar;
-	}
 	
-	//public List<Arbitro> getArbitros() {
-	//	return arbitros;
-	//}
+	public List<Arbitro> getArbitros() {
+		return arbitros;
+	}
 
+	public List<Time> getTimes() {
+		return times;
+	}
 
 	@Override
 	public int hashCode() {
@@ -174,7 +166,7 @@ public class Partida implements Serializable{
 	public String toString() {
 		return "Partida [id=" + id + ", data=" + data + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim
 				+ ", tipoPartidaEnum=" + tipoPartidaEnum + ", campeonato=" + campeonato + ", estadio=" + estadio
-				+ ", placar=" + placar + "]";
+				+ "]";
 	}
 
 	

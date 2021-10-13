@@ -31,10 +31,10 @@ public class Campeonato implements Serializable{
 	@Column(nullable = false)
 	private Integer ano;
 	
-	@Column(name = "data_inicio", nullable = false)
+	@Column(nullable = false)
 	private LocalDate dataInicio;
 	
-	@Column(name = "data_fim", nullable = false)
+	@Column(nullable = false)
 	private LocalDate dataFim;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "campeonato")
