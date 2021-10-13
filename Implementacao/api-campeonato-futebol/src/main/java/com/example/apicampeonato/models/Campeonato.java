@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "tb_campeonato")
 public class Campeonato implements Serializable{
@@ -32,12 +34,14 @@ public class Campeonato implements Serializable{
 	private Integer ano;
 	
 	@Column(nullable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataInicio;
 	
 	@Column(nullable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFim;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "campeonato")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "campeonato")
 	private List<Partida> partidas = new ArrayList<>();
 	
 	public Campeonato() {
