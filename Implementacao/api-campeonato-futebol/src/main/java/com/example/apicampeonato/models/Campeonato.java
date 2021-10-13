@@ -2,12 +2,17 @@ package com.example.apicampeonato.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +36,9 @@ public class Campeonato implements Serializable{
 	
 	@Column(name = "data_fim", nullable = false)
 	private LocalDate dataFim;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "campeonato")
+	private List<Partida> partidas = new ArrayList<>();
 	
 	public Campeonato() {
 		
@@ -83,6 +91,10 @@ public class Campeonato implements Serializable{
 
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
+	}
+	
+	public List<Partida> getPartidas() {
+		return partidas;
 	}
 
 	@Override
