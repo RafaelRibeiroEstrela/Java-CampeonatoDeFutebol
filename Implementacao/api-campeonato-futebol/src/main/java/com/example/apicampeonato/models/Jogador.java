@@ -14,8 +14,8 @@ public class Jogador extends Funcionario{
 
 	private static final long serialVersionUID = 1L;
 	
-	private TipoPernaEnum tipoPerna;
-	private TipoPosicaoEnum tipoPosicao;
+	private Integer tipoPerna;
+	private Integer tipoPosicao;
 	private Integer numeroDeGols = 0;
 	private Integer numeroDeFaltas = 0;
 	
@@ -27,26 +27,26 @@ public class Jogador extends Funcionario{
 		
 	}
 
-	public Jogador(TipoPernaEnum tipoPerna, TipoPosicaoEnum tipoPosicao) {
-		super();
-		this.tipoPerna = tipoPerna;
-		this.tipoPosicao = tipoPosicao;
+	public Jogador(Long id, String nome, String email, String cpf, Integer idade, TipoPernaEnum tipoPerna, TipoPosicaoEnum tipoPosicao) {
+		super(id, nome, email, cpf, idade);
+		this.tipoPerna = tipoPerna.getCod();
+		this.tipoPosicao = tipoPosicao.getCod();
 	}
 
 	public TipoPernaEnum getTipoPerna() {
-		return tipoPerna;
+		return TipoPernaEnum.toEnum(tipoPerna);
 	}
 
 	public void setTipoPerna(TipoPernaEnum tipoPerna) {
-		this.tipoPerna = tipoPerna;
+		this.tipoPerna = tipoPerna.getCod();
 	}
 
 	public TipoPosicaoEnum getTipoPosicao() {
-		return tipoPosicao;
+		return TipoPosicaoEnum.toEnum(tipoPosicao);
 	}
 
 	public void setTipoPosicao(TipoPosicaoEnum tipoPosicao) {
-		this.tipoPosicao = tipoPosicao;
+		this.tipoPosicao = tipoPosicao.getCod();
 	}
 
 	public Integer getNumeroDeGols() {

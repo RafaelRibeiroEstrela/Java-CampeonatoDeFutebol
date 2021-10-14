@@ -29,12 +29,12 @@ public class Arbitro extends Funcionario{
 		this.tipoArbitro = tipoArbitro.getCod();
 	}
 
-	public Integer getTipoArbitro() {
-		return tipoArbitro;
+	public TipoArbitroEnum getTipoArbitro() {
+		return TipoArbitroEnum.toEnum(tipoArbitro);
 	}
 
-	public void setTipoArbitro(Integer tipoArbitro) {
-		this.tipoArbitro = tipoArbitro;
+	public void setTipoArbitro(TipoArbitroEnum tipoArbitro) {
+		this.tipoArbitro = tipoArbitro.getCod();
 	}
 
 	@Override

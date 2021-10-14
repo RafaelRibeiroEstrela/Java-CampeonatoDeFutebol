@@ -43,5 +43,21 @@ public enum TipoPosicaoEnum {
 		throw new IllegalArgumentException("Enum inválido: " + desc);
 	}
 	
+public static TipoPosicaoEnum toEnum(Integer cod) {
+		
+		if (cod == null) {
+			return null;
+		}
+		
+		for (TipoPosicaoEnum index : TipoPosicaoEnum.values()) {
+			
+			if (cod == index.getCod()) {
+				return index;
+			}
+		}
+		
+		throw new IllegalArgumentException("Enum inválido: " + cod);
+	}
+	
 
 }

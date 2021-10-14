@@ -39,5 +39,21 @@ public enum TipoArbitroEnum {
 		throw new IllegalArgumentException("Enum inválido: " + desc);
 	}
 	
+public static TipoArbitroEnum toEnum(Integer cod) {
+		
+		if (cod == null) {
+			return null;
+		}
+		
+		for (TipoArbitroEnum index : TipoArbitroEnum.values()) {
+			
+			if (cod == index.getCod()) {
+				return index;
+			}
+		}
+		
+		throw new IllegalArgumentException("Enum inválido: " + cod);
+	}
+	
 
 }

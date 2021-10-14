@@ -30,13 +30,11 @@ public class Time implements Serializable{
 	private Integer numeroDeEmpates = 0;
 	private Integer numeroDeDerrotas = 0;
 	
-	@OneToMany(mappedBy = "time")
+	@OneToMany
 	private List<Jogador> jogadores = new ArrayList<>();
 	
 	@ManyToMany(mappedBy = "times")
 	private List<Partida> partidas = new ArrayList<>();
-	
-	//private List<Jogador> jogadores = new ArrayList<>();
 	
 	public Time() {
 		

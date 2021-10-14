@@ -2,6 +2,7 @@ package com.example.apicampeonato.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.example.apicampeonato.models.enums.TipoPartidaEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "tb_partida")
@@ -30,16 +32,19 @@ public class Partida implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data;
 	
 	@Column(nullable = false)
-	private LocalDate horaInicio;
+	@JsonFormat(pattern = "HH:mm")
+	private LocalDateTime horaInicio;
 	
 	@Column(nullable = false)
-	private LocalDate horaFim;
+	@JsonFormat(pattern = "HH:mm")
+	private LocalDateTime horaFim;
 	
 	@Column(nullable = false)
-	private Integer tipoPartidaEnum;
+	private Integer tipoPartida;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_campeonato")
@@ -61,14 +66,14 @@ public class Partida implements Serializable{
 		
 	}
 
-	public Partida(Long id, LocalDate data, LocalDate horaInicio, LocalDate horaFim, TipoPartidaEnum tipoPartidaEnum,
+	public Partida(Long id, LocalDate data, LocalDateTime horaInicio, LocalDateTime horaFim, TipoPartidaEnum tipoPartida,
 			Campeonato campeonato, Estadio estadio) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.horaInicio = horaInicio;
 		this.horaFim = horaFim;
-		this.tipoPartidaEnum = tipoPartidaEnum.getCod();
+		this.tipoPartida = tipoPartida.getCod();
 		this.campeonato = campeonato;
 		this.estadio = estadio;
 	}
@@ -89,28 +94,28 @@ public class Partida implements Serializable{
 		this.data = data;
 	}
 
-	public LocalDate getHoraInicio() {
+	public LocalDateTime getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(LocalDate horaInicio) {
+	public void setHoraInicio(LocalDateTime horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public LocalDate getHoraFim() {
+	public LocalDateTime getHoraFim() {
 		return horaFim;
 	}
 
-	public void setHoraFim(LocalDate horaFim) {
+	public void setHoraFim(LocalDateTime horaFim) {
 		this.horaFim = horaFim;
 	}
 
-	public Integer getTipoPartidaEnum() {
-		return tipoPartidaEnum;
+	public TipoPartidaEnum getTipoPartida() {
+		return TipoPartidaEnum.toEnum(tipoPartida);
 	}
 
-	public void setTipoPartidaEnum(Integer tipoPartidaEnum) {
-		this.tipoPartidaEnum = tipoPartidaEnum;
+	public void setTipoPartida(TipoPartidaEnum tipoPartida) {
+		this.tipoPartida = tipoPartida.getCod();
 	}
 
 	public Campeonato getCampeonato() {
@@ -165,7 +170,7 @@ public class Partida implements Serializable{
 	@Override
 	public String toString() {
 		return "Partida [id=" + id + ", data=" + data + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim
-				+ ", tipoPartidaEnum=" + tipoPartidaEnum + ", campeonato=" + campeonato + ", estadio=" + estadio
+				+ ", tipoPartida=" + tipoPartida + ", campeonato=" + campeonato + ", estadio=" + estadio
 				+ "]";
 	}
 
