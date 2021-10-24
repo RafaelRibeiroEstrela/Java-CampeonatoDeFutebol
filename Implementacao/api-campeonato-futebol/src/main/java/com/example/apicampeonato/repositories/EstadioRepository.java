@@ -7,5 +7,5 @@ import com.example.apicampeonato.models.Estadio;
 
 @Repository
 public interface EstadioRepository extends JpaRepository<Estadio, Long>{
-
+	
 }

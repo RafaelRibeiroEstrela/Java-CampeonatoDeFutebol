@@ -58,9 +58,9 @@ public class Partida implements Serializable{
 	@JoinTable(joinColumns = @JoinColumn(name = "id_partida"), inverseJoinColumns = @JoinColumn(name = "id_time"))
 	private List<Time> times = new ArrayList<>();
 	
-	@ManyToMany
-	@JoinTable(joinColumns = @JoinColumn(name = "id_partida"), inverseJoinColumns = @JoinColumn(name = "id_arbitro"))
-	private List<Arbitro> arbitros = new ArrayList<>();
+	//@ManyToMany
+	//@JoinTable(joinColumns = @JoinColumn(name = "id_partida"), inverseJoinColumns = @JoinColumn(name = "id_arbitro"))
+	//private List<Arbitro> arbitros = new ArrayList<>();
 
 	public Partida() {
 		
@@ -134,9 +134,9 @@ public class Partida implements Serializable{
 		this.estadio = estadio;
 	}
 	
-	public List<Arbitro> getArbitros() {
-		return arbitros;
-	}
+	//public List<Arbitro> getArbitros() {
+	//	return arbitros;
+	//}
 
 	public List<Time> getTimes() {
 		return times;

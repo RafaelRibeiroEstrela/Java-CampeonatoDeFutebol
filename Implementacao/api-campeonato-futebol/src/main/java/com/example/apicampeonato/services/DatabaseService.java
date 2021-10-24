@@ -65,7 +65,7 @@ public class DatabaseService {
 			
 			Estadio estadio = new Estadio();
 			estadio.setId(null);
-			estadio.setNome("Palestra Italia");
+			//estadio.setNome("Palestra Italia");
 			estadio = estadioRepository.save(estadio);
 			
 			Time timeA = new Time();
@@ -120,7 +120,7 @@ public class DatabaseService {
 			partida.setEstadio(estadio);
 			partida.setTipoPartida(TipoPartidaEnum.FINAL);
 			partida.getTimes().addAll(Arrays.asList(timeA, timeB));
-			partida.getArbitros().addAll(Arrays.asList(arbitro));
+			//partida.getArbitros().addAll(Arrays.asList(arbitro));
 			partidaRepository.save(partida);
 			
 		}

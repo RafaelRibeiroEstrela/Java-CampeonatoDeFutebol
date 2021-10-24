@@ -30,8 +30,8 @@ public class Time implements Serializable{
 	private Integer numeroDeEmpates = 0;
 	private Integer numeroDeDerrotas = 0;
 	
-	@OneToMany
-	private List<Jogador> jogadores = new ArrayList<>();
+	//@OneToMany
+	//private List<Jogador> jogadores = new ArrayList<>();
 	
 	@ManyToMany(mappedBy = "times")
 	private List<Partida> partidas = new ArrayList<>();
@@ -111,9 +111,9 @@ public class Time implements Serializable{
 		this.numeroDeDerrotas = numeroDeDerrotas;
 	}
 	
-	public List<Jogador> getJogadores() {
-		return jogadores;
-	}
+	//public List<Jogador> getJogadores() {
+	//	return jogadores;
+	//}
 
 	public List<Partida> getPartidas() {
 		return partidas;

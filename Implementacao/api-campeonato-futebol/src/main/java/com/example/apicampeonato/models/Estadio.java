@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_estadio")
+@Table(name = "TB_ESTADIO")
 public class Estadio implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -20,13 +20,13 @@ public class Estadio implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
-	private String nome;
+	private Integer nome;
 	
 	public Estadio() {
 		
 	}
 
-	public Estadio(Long id, String nome) {
+	public Estadio(Long id, Integer nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,11 +40,11 @@ public class Estadio implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
+	public Integer getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(Integer nome) {
 		this.nome = nome;
 	}
 

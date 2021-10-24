@@ -17,8 +17,8 @@ public class Arbitro extends Funcionario{
 
 	private Integer tipoArbitro;
 	
-	@ManyToMany(mappedBy = "arbitros")
-	private List<Partida> partidas = new ArrayList<>();
+	//@ManyToMany(mappedBy = "arbitros")
+	//private List<Partida> partidas = new ArrayList<>();
 
 	public Arbitro() {
 		super();
